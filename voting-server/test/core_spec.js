@@ -37,6 +37,46 @@ describe('application logic', () => {
         entries: List.of('Sunshine')
       }));
     });
+
+    it('puts winner of current vote back to entries', () => {
+      const state = fromJS({
+        vote: {
+          pair: ['Trainspotting', '28 Days Later'],
+          tally: {
+            Trainspotting: 4,
+            '28 Days Later': 2
+          }
+        },
+        entries: ['Sunshine', 'Millions', '127 Hours']
+      });
+      const nextState = next(state);
+      expect(nextState).to.equal(fromJS({
+        vote: {
+          pair: ['Sunshine', 'Millions']
+        },
+        entries: ['127 Hours', 'Trainspotting']
+      }));
+    });
+
+    it('puts both from a tied vote back to entries', () => {
+      const state = fromJS({
+        vote: {
+          pair: ['Trainspotting', '28 Days Later'],
+          tally: {
+            Trainspotting: 4,
+            '28 Days Later': 4
+          }
+        },
+        entries: ['Sunshine', 'Millions', '127 Hours']
+      });
+      const nextState = next(state);
+      expect(nextState).to.equal(fromJS({
+        vote: {
+          pair: ['Sunshine', 'Millions']
+        },
+        entries: ['127 Hours', 'Trainspotting', '28 Days Later']
+      }));
+    });
   });
 
   describe('vote', () => {
