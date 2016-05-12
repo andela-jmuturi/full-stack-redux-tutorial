@@ -1,9 +1,12 @@
 import React from 'react';
+import PureRenderMixin from 'react-addons-pure-render-mixin';
 
 import Winner from './Winner'; // eslint-disable-line
 import Vote from './Vote'; // eslint-disable-line
 
 export default React.createClass({
+  mixins: [PureRenderMixin],
+
   render: function () {
     return (
       <div>
