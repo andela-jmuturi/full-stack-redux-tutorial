@@ -39,9 +39,12 @@ export function next (state) {
 }
 
 export function vote (state, entry) {
-  return state.updateIn(
-    ['tally', entry],
-    0,
-    (tally) => tally + 1
-  );
+  if (state.get('pair').contains(entry)) {
+    return state.updateIn(
+      ['tally', entry],
+      0,
+      (tally) => tally + 1
+    );
+  }
+  return state;
 }
