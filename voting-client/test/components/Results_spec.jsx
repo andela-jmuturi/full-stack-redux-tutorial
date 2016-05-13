@@ -7,7 +7,7 @@ import {
 } from 'react-addons-test-utils';
 import { List, Map } from 'immutable';
 
-import Results from '../../src/components/Results'; // eslint-disable-line
+import { Results } from '../../src/components/Results'; // eslint-disable-line
 import { expect } from 'chai';
 
 describe('Results', () => {

@@ -1,12 +1,13 @@
 import React from 'react';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
+import { connect } from 'react-redux';
 
 /* eslint-disable no-unused-vars */
 import Winner from './Winner';
 import Tally from './Tally';
 /* eslint-enable no-unused-vars */
 
-export default React.createClass({
+export const Results = React.createClass({
   mixins: [PureRenderMixin],
 
   render: function () {
@@ -26,3 +27,13 @@ export default React.createClass({
     );
   }
 });
+
+function mapStateToProps (state) {
+  return {
+    pair: state.getIn(['vote', 'pair']),
+    tally: state.getIn(['vote', 'tally']),
+    winner: state.get('winner')
+  };
+}
+
+export const ResultsContainer = connect(mapStateToProps)(Results);
