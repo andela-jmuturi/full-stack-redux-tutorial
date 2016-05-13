@@ -15,6 +15,8 @@ import { VotingContainer } from './components/Voting';
 import { ResultsContainer } from './components/Results';
 /* eslint-enable no-unused-vars */
 
+require('./styles.css');
+
 const socket = io(
   `${window.location.protocol}//${window.location.hostname}:8090`);
 
